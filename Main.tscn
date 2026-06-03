@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://du5cxweqk1qh3"]
+
+[ext_resource type="Script" uid="uid://dl08jbj2tsuda" path="res://turn_timer.gd" id="1_glv2v"]
+
+[sub_resource type="GDScript" id="GDScript_rxg2q"]
+script/source = "extends Control
+
+@onready var title_label: Label = $MarginContainer/VBoxContainer/TitleLabel
+@onready var crowd_bar: ProgressBar = $MarginContainer/VBoxContainer/CrowdBar
+@onready var crowd_label: Label = $MarginContainer/VBoxContainer/CrowdLabel
+@onready var prompt_label: Label = $MarginContainer/VBoxContainer/PromptLabel
+@onready var input_box: LineEdit = $MarginContainer/VBoxContainer/InputBox
+@onready var start_button: Button = $MarginContainer/VBoxContainer/StartButton
+@onready var feedback_label: Label = $MarginContainer/VBoxContainer/FeedbackLabel
+@onready var transcript_label: Label = $MarginContainer/VBoxContainer/TranscriptLabel
+@onready var turn_timer: Timer = $TurnTimer
+
+const SENTIMENT_MIN := -3
+const SENTIMENT_MAX := 3
+
+const SENTIMENT_NAMES := {
+	-3: \"Massa Murka\",
+	-2: \"Publik Membara\",
+	-1: \"Publik Curiga\",
+	0: \"Netral\",
+	1: \"Mulai Menerima\",
+	2: \"Antusias\",
+	3: \"Masyarakat Bersorak\"
+}
+
+const POSITIVE_WORDS := {
+	\"gratis\": 1,
+	\"maju\": 1,
+	\"cerdas\": 1,
+	\"sejahtera\": 1,
+	\"adil\": 1,
+	\"aman\": 1,
+	\"rakyat\": 1
+}
+
+const SPEECHES := [
+	\"Saudara saudara kita akan membangun bangsa yang gratis maju dan cerdas\",
+	\"Kita hadirkan layanan yang adil sejahtera dan aman untuk semua\",
+	\"Dengan kerja keras kita wujudkan masa depan yang maju dan kuat\"
+]
+
+var words: Array = []
+var current_word_index := 0
+var speech_index := 0
+
+var public_sentiment := 0
+var score := 0
+var streak := 0
+
+var game_active := false
+var transcript := \"\"
+var feedback := \"\"
+
+var current_word_failed := false
+
+func _ready() -> void:
+	input_box.text_changed.connect(_on_text_changed)
+	start_button.pressed.connect(start_game)
+	turn_timer.timeout.connect(_on_turn_timer_timeout)
+
+	start_button.focus_mode = Control.FOCUS_NONE
+
+	turn_timer.wait_time = 1.0
+	turn_timer.one_shot = false
+
+	crowd_bar.min_value = SENTIMENT_MIN
+	crowd_bar.max_value = SENTIMENT_MAX
+
+	start_game()
+
+func start_game() -> void:
+	game_active = true
+
+	public_sentiment = 0
+	score = 0
+	streak = 0
+
+	speech_index = 0
+	transcript = \"\"
+
+	load_speech(speech_index)
+
+	input_box.editable = true
+	input_box.clear()
+
+	turn_timer.start()
+
+	update_ui()
+	call_deferred(\"_focus_input\")
+
+func _focus_input() -> void:
+	if game_active:
+		input_box.grab_focus()
+
+func load_speech(index: int) -> void:
+	words = String(SPEECHES[index]).split(\" \", false)
+	current_word_index = 0
+	current_word_failed = false
+	feedback = \"Orasi dimulai.\"
+
+func normalize_word(text: String) -> String:
+	var s := text.strip_edges().to_lower()
+
+	for ch in [
+		\",\", \".\", \"!\", \"?\", \":\", \";\",
+		\"\\\"\", \"'\", \"(\", \")\", \"-\", \"—\"
+	]:
+		s = s.replace(ch, \"\")
+
+	return s
+
+func sentiment_label() -> String:
+	return SENTIMENT_NAMES.get(public_sentiment, \"Netral\")
+
+func apply_sentiment(delta: int) -> void:
+	public_sentiment = clampi(
+		public_sentiment + delta,
+		SENTIMENT_MIN,
+		SENTIMENT_MAX
+	)
+
+func _on_text_changed(new_text: String) -> void:
+	if not game_active:
+		return
+
+	if current_word_index >= words.size():
+		return
+
+	var typed := normalize_word(new_text)
+	var expected := normalize_word(words[current_word_index])
+
+	if typed == \"\":
+		current_word_failed = false
+		return
+
+	# masih benar
+	if expected.begins_with(typed):
+
+		feedback = \"...\"
+
+		if typed == expected:
+			_commit_word(expected)
+
+		update_ui()
+		return
+
+	# typo
+	if not current_word_failed:
+
+		current_word_failed = true
+
+		streak = 0
+		apply_sentiment(-1)
+
+		feedback = \"Slip of tongue! Publik meragukan ucapanmu.\"
+
+		update_ui()
+		check_fail_state()
+
+func _commit_word(expected: String) -> void:
+
+	streak += 1
+	score += 10 + streak
+
+	transcript += words[current_word_index] + \" \"
+
+	if POSITIVE_WORDS.has(expected):
+		apply_sentiment(1)
+		score += 5
+		feedback = \"Publik menyambut baik.\"
+	else:
+		feedback = \"Pidato berlanjut.\"
+
+	current_word_index += 1
+
+	current_word_failed = false
+
+	input_box.clear()
+
+	if current_word_index >= words.size():
+
+		speech_index += 1
+
+		if speech_index >= SPEECHES.size():
+			finish_game()
+			return
+
+		load_speech(speech_index)
+
+	update_ui()
+
+	call_deferred(\"_focus_input\")
+
+func _on_turn_timer_timeout() -> void:
+
+	if not game_active:
+		return
+
+	if streak >= 5:
+		score += 1
+
+	update_ui()
+
+func check_fail_state() -> void:
+
+	if public_sentiment <= SENTIMENT_MIN:
+		lose_game()
+
+func finish_game() -> void:
+
+	game_active = false
+
+	turn_timer.stop()
+	input_box.editable = false
+
+	match public_sentiment:
+		3:
+			feedback = \"Masyarakat bersorak. Popularitas melonjak.\"
+		2:
+			feedback = \"Publik antusias dengan pidatomu.\"
+		1:
+			feedback = \"Publik mulai percaya.\"
+		0:
+			feedback = \"Publik tetap netral.\"
+		_:
+			feedback = \"Kepercayaan publik menurun.\"
+
+	update_ui()
+
+func lose_game() -> void:
+
+	game_active = false
+
+	turn_timer.stop()
+	input_box.editable = false
+
+	feedback = \"Massa murka. Orasi dihentikan.\"
+
+	update_ui()
+
+func update_ui() -> void:
+
+	crowd_bar.value = public_sentiment
+
+	crowd_label.text = \"%s (%d)\" % [
+		sentiment_label(),
+		public_sentiment
+	]
+
+	feedback_label.text = feedback
+
+	transcript_label.text = transcript.strip_edges()
+
+	if game_active and current_word_index < words.size():
+		prompt_label.text = words[current_word_index]
+	else:
+		prompt_label.text = \"Pidato selesai\"
+"
+
+[node name="Main" type="Control" unique_id=407997944]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_rxg2q")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1474804308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=518980587]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=597171548]
+layout_mode = 2
+
+[node name="CrowdBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1107495180]
+layout_mode = 2
+min_value = 50.0
+value = 50.0
+
+[node name="CrowdLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1868317945]
+layout_mode = 2
+
+[node name="PromptLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1563585722]
+layout_mode = 2
+
+[node name="InputBox" type="LineEdit" parent="MarginContainer/VBoxContainer" unique_id=1588130439]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1994041408]
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=694218428]
+layout_mode = 2
+
+[node name="TranscriptLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1853184069]
+layout_mode = 2
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=1596368903]
+script = ExtResource("1_glv2v")
