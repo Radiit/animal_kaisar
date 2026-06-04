@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bpmoambwguq3f"]
+
+[node name="Control" type="Control" unique_id=1528362241]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1202530833]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1321296091]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1620296779]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=585226367]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1059793954]
+layout_mode = 2
+
+[node name="ButtonsVBox" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=858161075]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1264143698]
+layout_mode = 2

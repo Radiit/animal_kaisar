@@ -11,9 +11,20 @@ config_version=5
 [application]
 
 config/name="orasi_game_jam"
-run/main_scene="uid://du5cxweqk1qh3"
+run/main_scene="uid://yic5trofi1tl"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="uid://b3pih4u3q0qpc"
 
 [physics]
 

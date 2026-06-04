@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://yic5trofi1tl"]
+
+[ext_resource type="Script" uid="uid://bi8doot7mnhyr" path="res://main_menu_page.gd" id="1_e43cg"]
+[ext_resource type="Texture2D" uid="uid://cmvnxuc6lo61y" path="res://menu-bg-new.png" id="2_8ev1r"]
+[ext_resource type="Texture2D" uid="uid://1np7wjkj71f0" path="res://card_menu.png" id="3_8ev1r"]
+[ext_resource type="Texture2D" uid="uid://ddajjo6taitem" path="res://Button.png" id="3_ccx6m"]
+
+[sub_resource type="Theme" id="Theme_vodje"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccx6m"]
+texture = ExtResource("3_ccx6m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ev1r"]
+texture = ExtResource("3_ccx6m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xw73"]
+texture = ExtResource("3_ccx6m")
+
+[node name="MainMenuPage" type="Control" unique_id=1491222841]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e43cg")
+
+[node name="Sprite2D" type="TextureRect" parent="." unique_id=1408438538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.999992
+offset_top = -30.0
+offset_right = 139.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9198538, 0.9229572)
+mouse_filter = 2
+texture = ExtResource("2_8ev1r")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1631632403]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.75772
+offset_top = -344.0
+offset_right = 385.2423
+offset_bottom = 271.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.13264503
+texture = ExtResource("3_8ev1r")
+expand_mode = 1
+
+[node name="ContentLayer" type="Control" parent="." unique_id=1035170830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -67.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ContentLayer" unique_id=1399389606]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 237.0
+offset_right = 1055.0
+offset_bottom = 857.0
+
+[node name="ContentBox" type="Control" parent="ContentLayer/CenterContainer" unique_id=1444051222]
+custom_minimum_size = Vector2(620, 620)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentLayer/CenterContainer/ContentBox" unique_id=1156625386]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 27.0
+offset_right = 461.0
+offset_bottom = 169.0
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="ContentLayer/CenterContainer/ContentBox/MarginContainer" unique_id=1326625472]
+layout_mode = 2
+theme = SubResource("Theme_vodje")
+alignment = 1
+
+[node name="Label" type="Label" parent="ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox" unique_id=1950212036]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Animal Kaisar"
+horizontal_alignment = 1
+autowrap_trim_flags = 0
+
+[node name="PlayButton" type="Button" parent="ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox" unique_id=162056957]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_font_sizes/font_size = 62
+theme_override_styles/normal = SubResource("StyleBoxTexture_ccx6m")
+
+[node name="OptionButton" type="Button" parent="ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox" unique_id=1527986168]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_font_sizes/font_size = 62
+theme_override_styles/normal = SubResource("StyleBoxTexture_8ev1r")
+
+[node name="CreditButton" type="Button" parent="ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox" unique_id=1953061738]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_font_sizes/font_size = 62
+theme_override_styles/normal = SubResource("StyleBoxTexture_8xw73")

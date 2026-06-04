@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b722lojrmfn7l"]
+
+[ext_resource type="Script" uid="uid://bc5xk572duol4" path="res://pause_menu_page.gd" id="1_245yd"]
+
+[node name="ButtonsVBox" type="Button" unique_id=359726683]
+script = ExtResource("1_245yd")
+
+[node name="ResumeButton" type="Button" parent="." unique_id=1818286708]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="BackToMenuButton" type="Button" parent="." unique_id=1881049669]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
