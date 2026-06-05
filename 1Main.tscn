@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://du5cxweqk1qh3"]
+
+[ext_resource type="Script" uid="uid://cjairw7s0tm8j" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="Texture2D" uid="uid://bxr66mpd1j6ec" path="res://background-gameplay.png" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://bwkhhjsf43a0s" path="res://sentiment_bar.gd" id="2_r0du0"]
+[ext_resource type="Script" uid="uid://dl08jbj2tsuda" path="res://turn_timer.gd" id="2_uu6xs"]
+[ext_resource type="Texture2D" uid="uid://dpgu05787mc0w" path="res://assets/sentiment/bar_red.png" id="4_5vvyt"]
+[ext_resource type="Texture2D" uid="uid://bj2hcl2ihcxbj" path="res://assets/sentiment/bar_green.png" id="5_c6i3y"]
+[ext_resource type="Texture2D" uid="uid://dlljo21yxo00o" path="res://babi.png" id="6_c2ibq"]
+[ext_resource type="Texture2D" uid="uid://s8vysskndow4" path="res://podium.png" id="7_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://bt5uuc6fah10v" path="res://assets/left_hand.png" id="8_fpfj3"]
+[ext_resource type="Texture2D" uid="uid://pd0lfhaiqbqm" path="res://assets/right_hand.png" id="9_sc1dx"]
+[ext_resource type="Texture2D" uid="uid://7v5yipr7i2lo" path="res://assets/mic.png" id="10_kjvhd"]
+[ext_resource type="Script" uid="uid://dmjpot8e6818t" path="res://sentiment_effects.gd" id="12_5tuhn"]
+
+[node name="Main" type="Control" unique_id=407997944]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_glv2v")
+
+[node name="Background" type="TextureRect" parent="." unique_id=589248810]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.10329861
+anchor_top = -0.08796296
+anchor_right = 1.1467013
+anchor_bottom = 1.4922839
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cm0pq")
+metadata/_edit_use_anchors_ = true
+
+[node name="SentimentBar" type="Control" parent="." unique_id=19094259]
+anchors_preset = 0
+offset_top = 21.0
+offset_right = 1152.0
+offset_bottom = 21.0
+script = ExtResource("2_r0du0")
+
+[node name="Background" type="TextureRect" parent="SentimentBar" unique_id=1761708999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 25.0
+offset_right = 80.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5vvyt")
+
+[node name="Foreground" type="TextureRect" parent="SentimentBar" unique_id=1803301092]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 640.0
+offset_top = 15.0
+offset_right = 640.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_c6i3y")
+
+[node name="PigIcon" type="TextureRect" parent="SentimentBar" unique_id=121681536]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 15.0
+offset_right = 906.0
+offset_bottom = 298.0
+texture = ExtResource("6_c2ibq")
+
+[node name="CrowdLayer" type="Control" parent="." unique_id=2087694533]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrowdGrid" type="GridContainer" parent="CrowdLayer" unique_id=1848248147]
+custom_minimum_size = Vector2(1280, 190)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="Stage" type="Control" parent="." unique_id=921560639]
+anchors_preset = 0
+offset_top = 21.0
+offset_right = 40.0
+offset_bottom = 61.0
+
+[node name="Podium" type="TextureRect" parent="Stage" unique_id=2080840411]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_j4qnp")
+
+[node name="left_hand" type="TextureRect" parent="Stage" unique_id=2094996508]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_fpfj3")
+
+[node name="right_hand" type="TextureRect" parent="Stage" unique_id=59275455]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_sc1dx")
+
+[node name="mic" type="TextureRect" parent="Stage" unique_id=369951040]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_kjvhd")
+
+[node name="PaperMargin" type="MarginContainer" parent="Stage" unique_id=1409387737]
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 516.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="PaperVBox" type="VBoxContainer" parent="Stage/PaperMargin" unique_id=73819726]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Stage/PaperMargin/PaperVBox" unique_id=867960006]
+layout_mode = 2
+
+[node name="PromptLabel" type="Label" parent="Stage/PaperMargin/PaperVBox" unique_id=1176239830]
+layout_mode = 2
+
+[node name="InputBox" type="LineEdit" parent="Stage/PaperMargin/PaperVBox" unique_id=835000102]
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="Stage/PaperMargin/PaperVBox" unique_id=1390819212]
+layout_mode = 2
+
+[node name="TranscriptLabel" type="Label" parent="Stage/PaperMargin/PaperVBox" unique_id=1818526501]
+layout_mode = 2
+
+[node name="CrowdLabel" type="Label" parent="Stage/PaperMargin/PaperVBox" unique_id=1469280502]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Stage/PaperMargin/PaperVBox" unique_id=1900958869]
+layout_mode = 2
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=1596368903]
+script = ExtResource("2_uu6xs")
+
+[node name="SentimentEffects" type="Control" parent="." unique_id=156466729]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_5tuhn")
