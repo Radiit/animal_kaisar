@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://c1story1"]
+
+[ext_resource type="Script" uid="uid://d2iqg7gf4lu8s" path="res://story_scene.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://t3fyhktgbksf" path="res://assets/chapter1/c1-3.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://gayybeilkdjw" path="res://assets/frame_dialogue.png" id="3_diag"]
+[ext_resource type="Texture2D" uid="uid://6bjq8h0y3shh" path="res://assets/frame_name.png" id="4_name"]
+[ext_resource type="FontFile" uid="uid://b3pih4u3q0qpc" path="res://Dokdo-Regular.ttf" id="5_font"]
+[ext_resource type="Texture2D" uid="uid://ddajjo6taitem" path="res://Button.png" id="6_btn"]
+
+[sub_resource type="Animation" id="Animation_typewriter"]
+resource_name = "typewriter"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/DialogueContainer/DialogueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_story"]
+_data = {
+&"typewriter": SubResource("Animation_typewriter")
+}
+
+[node name="StoryScene" type="Control" unique_id=710507330]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1455606319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TransitionBG" type="TextureRect" parent="." unique_id=1272347805]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1127353511]
+
+[node name="DialogueContainer" type="Control" parent="UI" unique_id=1359278244]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -123.0
+offset_right = -3.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueFrame" type="TextureRect" parent="UI/DialogueContainer" unique_id=2139061945]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_diag")
+expand_mode = 1
+
+[node name="DialogueLabel" type="RichTextLabel" parent="UI/DialogueContainer" unique_id=1713955175]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 59.0
+offset_top = 35.0
+offset_right = -291.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("5_font")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Sample dialogue text goes here.[/center]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="NameAndNextContainer" type="VBoxContainer" parent="UI" unique_id=2123253289]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -285.0
+offset_top = -165.0
+offset_right = -25.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="NameFrame" type="TextureRect" parent="UI/NameAndNextContainer" unique_id=1010222131]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_name")
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="UI/NameAndNextContainer/NameFrame" unique_id=838992312]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 64
+text = "Major"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="UI/NameAndNextContainer" unique_id=1787289573]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.258824, 0.137255, 0, 1)
+theme_override_colors/font_focus_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_colors/font_hover_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.25882354, 0.13725491, 0, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 48
+text = "NEXT"
+flat = true
+
+[node name="ButtonBG" type="TextureRect" parent="UI/NameAndNextContainer/NextButton" unique_id=2146276557]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_btn")
+expand_mode = 1
+
+[node name="CenterFrame" type="TextureRect" parent="UI" unique_id=1238877518]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -280.0
+offset_right = 400.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CenterLabel" type="Label" parent="UI/CenterFrame" unique_id=1699760346]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FadeOverlay" type="ColorRect" parent="UI" unique_id=1952146631]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1533990286]
+libraries/ = SubResource("AnimationLibrary_story")

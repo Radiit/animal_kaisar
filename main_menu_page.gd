@@ -41,4 +41,4 @@ func _set_button_texture(btn: Button, tex: Texture2D) -> void:
 		btn.add_theme_stylebox_override("focus", style)
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Main.tscn")
+	get_tree().change_scene_to_file("res://StoryScene.tscn")
