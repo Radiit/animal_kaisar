@@ -1,7 +1,6 @@
 extends Control
 
 @onready var play_button = $ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox/PlayButton
-@onready var option_button = $ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox/OptionButton
 @onready var credit_button = $ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox/CreditButton
 
 var TEX_NORMAL: Texture2D
@@ -14,11 +13,15 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	
 	play_button.text = "Play"
-	option_button.text = "Option"
-	credit_button.text = "Kredit"
+	credit_button.text = "Credit"
+	
+	# Hiding the unused option button
+	var option_btn = $ContentLayer/CenterContainer/ContentBox/MarginContainer/ButtonsVBox.get_node_or_null("OptionButton")
+	if option_btn:
+		option_btn.visible = false
 	
 	var brown_color := Color("#422300")
-	for btn in [play_button, option_button, credit_button]:
+	for btn in [play_button, credit_button]:
 		# Set a permanent font color for all states to prevent flickering/turning white
 		btn.add_theme_color_override("font_color", brown_color)
 		btn.add_theme_color_override("font_hover_color", brown_color)
