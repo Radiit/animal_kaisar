@@ -129,11 +129,9 @@ offset_right = 123.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.258824, 0.137255, 0, 1)
+theme_override_colors/default_color = Color(0.258824, 0.137255, 0, 1)
 theme_override_font_sizes/font_size = 53
 text = "Sentiment"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CrowdLayer" type="Control" parent="." unique_id=385466527]
 unique_name_in_owner = true
@@ -303,18 +301,18 @@ layout_mode = 2
 texture = ExtResource("3_ccx6m")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionA" unique_id=3000000003]
+[node name="Label" type="RichTextLabel" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionA" unique_id=3000000003]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.258824, 0.137255, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_colors/default_color = Color(0.258824, 0.137255, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+scroll_active = false
 text = "Opsi A"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="OptionB" type="TextureRect" parent="Paper/PaperMargin/PaperVBox/QTEOptions" unique_id=3000000004]
 custom_minimum_size = Vector2(120, 50)
@@ -322,18 +320,18 @@ layout_mode = 2
 texture = ExtResource("3_ccx6m")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionB" unique_id=3000000005]
+[node name="Label" type="RichTextLabel" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionB" unique_id=3000000005]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.258824, 0.137255, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_colors/default_color = Color(0.258824, 0.137255, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+scroll_active = false
 text = "Opsi B"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="OptionC" type="TextureRect" parent="Paper/PaperMargin/PaperVBox/QTEOptions" unique_id=3000000006]
 custom_minimum_size = Vector2(120, 50)
@@ -341,18 +339,18 @@ layout_mode = 2
 texture = ExtResource("3_ccx6m")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionC" unique_id=3000000007]
+[node name="Label" type="RichTextLabel" parent="Paper/PaperMargin/PaperVBox/QTEOptions/OptionC" unique_id=3000000007]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.258824, 0.137255, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_colors/default_color = Color(0.258824, 0.137255, 0, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+scroll_active = false
 text = "Opsi C"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TurnTimer" type="Timer" parent="." unique_id=1155600722]
 unique_name_in_owner = true

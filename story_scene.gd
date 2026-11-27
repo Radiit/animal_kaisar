@@ -14,7 +14,7 @@ extends Control
 @onready var ui_container: VBoxContainer = $UI/NameAndNextContainer
 
 var story_data = [
-	# CHAPTER 1
+	# SCENE 1 — The First Voice
 	{
 		"background": "res://assets/chapter1/c1-1.png",
 		"name": "",
@@ -23,24 +23,44 @@ var story_data = [
 	{
 		"background": "res://assets/chapter1/c1-2.png",
 		"name": "",
-		"text": ""
+		"text": "On a quiet night, everyone gathered in the old hall at the center of the settlement."
+	},
+	{
+		"background": "res://assets/chapter1/c1-2.png",
+		"name": "",
+		"text": "In the middle of the crowd stood an elder, speaking about a world that had never been fair —"
+	},
+	{
+		"background": "res://assets/chapter1/c1-2.png",
+		"name": "",
+		"text": "— about labor that never returned to the hands that created it,"
+	},
+	{
+		"background": "res://assets/chapter1/c1-2.png",
+		"name": "",
+		"text": "and about a dream of finally owning their own future."
 	},
 	{
 		"background": "res://assets/chapter1/c1-3.png",
-		"name": "Major",
-		"text": "As long as humans rule, we only work for them. We provide the labor, and they take the rewards.\nIt's time for us to rise up and take back our lives."
+		"name": "Elder",
+		"text": "“We built all of this."
 	},
 	{
 		"background": "res://assets/chapter1/c1-3.png",
-		"name": "Major",
-		"text": "Ptok Ptok Ptok, hweee hweee hweee, ngok ngoookkkk !!!!! Ptok Ptok Ptok, hweee hweee hweee, ngok ngoookkkkm !!!!!! Ptok Ptok Ptok, hweee hweee hweee, ngok ngoookkkk"
+		"name": "Elder",
+		"text": "Yet we have been given the least of it."
+	},
+	{
+		"background": "res://assets/chapter1/c1-3.png",
+		"name": "Elder",
+		"text": "It is time we decide our own fate.”"
 	},
 	{
 		"background": "res://assets/chapter1/c1-4.png",
 		"name": "",
-		"text": "Not long after the old major announced his revolution, he died.\nBut his words ignited hope. \nFor the first time, the animals imagined a life of freedom and equality."
+		"text": "His words lit a fire that had long been buried."
 	},
-	# CHAPTER 2
+	# SCENE 2 — The Turning Point
 	{
 		"background": "res://assets/chapter2/c2-1.png",
 		"name": "",
@@ -49,41 +69,65 @@ var story_data = [
 	{
 		"background": "res://assets/chapter2/c2-2.png",
 		"name": "",
-		"text": "Not long after that, humans were driven from the ranch. Doors were opened, barns were torn down, and the old name of the ranch was abandoned. Now, everything belongs to the animals."
+		"text": "Not long after, the old order collapsed. The gates were opened, and the old signs came down,"
+	},
+	{
+		"background": "res://assets/chapter2/c2-2.png",
+		"name": "",
+		"text": "and the rules no one had ever questioned were torn apart one by one."
 	},
 	{
 		"background": "res://assets/chapter2/c2-3.png",
-		"name": "Napoleon",
-		"text": "We did it. We are free."
+		"name": "The Pig",
+		"text": "“Now it’s our turn.”"
 	},
 	{
 		"background": "res://assets/chapter2/c2-4.png",
-		"name": "Boxer",
-		"text": "No more whips. No more human commands."
+		"name": "Horsh",
+		"text": "“No more speaking for us.”"
 	},
 	{
 		"background": "res://assets/chapter2/c2-5.png",
 		"name": "",
-		"text": "They believe a new age has begun. Seven rules are laid out, and all animals are united in one promise: equality.",
-		"show_center_after": "res://assets/chapter2/frame-c2-5.png"
+		"text": "They believed a new age had begun."
 	},
-	# CHAPTER 3
+	# SCENE 3 — The First Crack
 	{
 		"background": "res://assets/chapter3/c3-1.png",
 		"name": "",
 		"text": ""
 	},
 	{
+		"background": "res://assets/chapter2/c2-2.png",
+		"name": "",
+		"text": "But every major change creates those who want to control its direction."
+	},
+	{
+		"background": "res://assets/chapter2/c2-2.png",
+		"name": "",
+		"text": "Beneath the promise of freedom, new voices began to guide, calm, and justify everything that followed."
+	},
+	{
 		"background": "res://assets/chapter3/c3-2.png",
-		"name": "Napoleon",
-		"text": "This farm must remain safe. Not all animals can understand big decisions."
+		"name": "Pig Boss",
+		"text": "“Order must be protected."
+	},
+	{
+		"background": "res://assets/chapter3/c3-2.png",
+		"name": "Pig Boss",
+		"text": "Not everyone needs to know everything.”"
 	},
 	{
 		"background": "res://assets/chapter3/c3-3.png",
 		"name": "",
-		"text": "Every rule change is made to sound reasonable. Any dissatisfaction is answered with reasons. Every doubt is forced to silence before it can grow."
+		"text": "Every decision was made to sound reasonable."
 	},
-	# CHAPTER 4
+	{
+		"background": "res://assets/chapter3/c3-3.png",
+		"name": "",
+		"text": "Every doubt was answered with an explanation that felt convincing enough to accept."
+	},
+	# SCENE 4 — Your Role
 	{
 		"background": "res://assets/chapter4/c4-1.png",
 		"name": "",
@@ -92,21 +136,34 @@ var story_data = [
 	{
 		"background": "res://assets/chapter4/c4-2.png",
 		"name": "",
-		"text": "Now, you stand in that line. Not as a witness, but as a voice that must be heard. In front of the animals, every word you type will shape their beliefs.",
-		"show_center_after": "res://assets/chapter4/c4-2-frame.png",
-		"center_text": "Now, you stand in that line. Not as a witness, but as a voice that must be heard. In front of the animals, every word you type will shape their beliefs."
+		"text": "Now you stand inside that current."
+	},
+	{
+		"background": "res://assets/chapter4/c4-2.png",
+		"name": "",
+		"text": "Not as a witness, but as the voice that shapes what others believe."
 	},
 	{
 		"background": "res://assets/chapter4/c4-3.png",
-		"name": "Squerel",
-		"text": "Listen carefully.\nWhat we do is for the common good."
+		"name": "MicPig",
+		"text": "“Listen carefully."
+	},
+	{
+		"background": "res://assets/chapter4/c4-3.png",
+		"name": "MicPig",
+		"text": "We are only saying what they need to understand.”"
 	},
 	{
 		"background": "res://assets/chapter4/c4-4.png",
 		"name": "",
-		"text": "But words are not always easy to control. One typo can trigger doubts. Too many mistakes, and their trust starts to crumble."
+		"text": "Here, words are never just words."
 	},
-	# CHAPTER 5
+	{
+		"background": "res://assets/chapter4/c4-4.png",
+		"name": "",
+		"text": "One small mistake can break their trust. Too many errors, and your influence begins to slip away."
+	},
+	# SCENE 5 — How It Works
 	{
 		"background": "res://assets/chapter5/c5-1.png",
 		"name": "",
@@ -116,12 +173,39 @@ var story_data = [
 		"background": "res://assets/chapter5/c5-3.png",
 		"name": "",
 		"text": "",
-		"show_center_after": "res://assets/chapter5/c5-2-frame.png"
+		"show_center_after": "res://assets/chapter5/c5-2-frame.png",
+		"center_text": ""
+	},
+	# SCENE 6 — Transition to Gameplay
+	#{
+		#"background": "res://assets/chapter5/c5-3.png",
+		#"name": "",
+		#"text": "In a place like this, truth is never fixed."
+	#},
+	#{
+		#"background": "res://assets/chapter5/c5-3.png",
+		#"name": "",
+		#"text": "Truth is whatever sounds convincing enough to be believed."
+	#},
+	{
+		"background": "res://assets/chapter5/c5-3.png",
+		"name": "MicPig",
+		"text": "“One more time."
+	},
+	{
+		"background": "res://assets/chapter5/c5-3.png",
+		"name": "MicPig",
+		"text": "We are not forcing anyone."
+	},
+	{
+		"background": "res://assets/chapter5/c5-3.png",
+		"name": "MicPig",
+		"text": "We are only keeping things together.”"
 	},
 	{
 		"background": "res://assets/chapter5/c5-3.png",
 		"name": "",
-		"text": "",
+		"text": "If you succeed, they will keep believing. \nAnd as long as they believe, control stays in your hands.",
 		"show_center_after": "res://assets/chapter5/c5-3-frame.png",
 		"is_last_slide": true
 	}
@@ -295,7 +379,7 @@ func _show_special_frame(data: Dictionary) -> void:
 		next_button.visible = true
 		if data.has("is_last_slide") and data["is_last_slide"]:
 			# REPOSITION BUTTON TO CENTER BOTTOM FOR LAST SLIDE
-			next_button.text = "Tap to Begin"
+			next_button.text = "Begin"
 			next_button.add_theme_color_override("font_color", Color("#422300"))
 			
 			# Move button out of container to center it
